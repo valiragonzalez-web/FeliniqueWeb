@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felinique - Moda Exclusiva para Gatos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <div class="logo">
+                    <i class="fas fa-cat"></i>
+                    <span>Felinique</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active">Inicio</a></li>
+                    <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+                    <li><a href="#probador-ar" class="nav-link">Probador AR</a></li>
+                    <li><a href="#asesoria" class="nav-link">Asesoría</a></li>
+                    <li><a href="#acerca-de" class="nav-link">Acerca de</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="icon-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="icon-btn" aria-label="Usuario">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="icon-btn cart-btn" aria-label="Carrito">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Moda Exclusiva Pensada para el Bienestar Felino</h1>
+            <p class="hero-subtitle">Diseños únicos españoles con tecnología de Realidad Aumentada</p>
+            <button class="btn btn-primary" onclick="scrollToSection('catalogo')">Descubre la Colección</button>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder">
+                <i class="fas fa-cat"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovación AR Section -->
+    <section class="ar-innovation">
+        <div class="container">
+            <div class="ar-content">
+                <div class="ar-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2>Tecnología de Realidad Aumentada</h2>
+                <p>Visualiza cómo quedará cada prenda en tu gato antes de comprar</p>
+                <button class="btn btn-secondary" onclick="scrollToSection('probador-ar')">Probar Ahora</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Diseño Exclusivo Español</h3>
+                    <p>Cada prenda es única y creada con amor</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Materiales Premium</h3>
+                    <p>80% materiales ecológicos y seguros</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-vr-cardboard"></i>
+                    <h3>Prueba Virtual AR</h3>
+                    <p>Sin incertidumbre en tallas</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Envíos a Toda España</h3>
+                    <p>Entrega rápida y segura</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Productos Destacados</h2>
+            <div class="products-carousel" id="productsCarousel">
+                <!-- Los productos se cargarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo Section -->
+    <section id="catalogo" class="catalogo">
+        <div class="container">
+            <h2 class="section-title">Nuestro Catálogo</h2>
+            
+            <!-- Filtros -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="sueter">Suéteres</button>
+                <button class="filter-btn" data-filter="camiseta">Camisetas</button>
+                <button class="filter-btn" data-filter="chaqueta">Chaquetas</button>
+                <button class="filter-btn" data-filter="accesorio">Accesorios</button>
+            </div>
+
+            <!-- Grid de Productos -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Los productos se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Probador AR Section -->
+    <section id="probador-ar" class="probador-ar">
+        <div class="container">
+            <h2 class="section-title">Probador Virtual AR</h2>
+            <p class="section-subtitle">Visualiza cómo quedará la ropa en tu gato antes de comprar</p>
+            
+            <div class="ar-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-upload"></i>
+                    <h3>Sube una foto</h3>
+                    <p>De tu gato en buena calidad</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-tshirt"></i>
+                    <h3>Selecciona la prenda</h3>
+                    <p>Elige entre nuestros diseños</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-eye"></i>
+                    <h3>Visualiza el resultado</h3>
+                    <p>Ve cómo queda en tu gato</p>
+                </div>
+            </div>
+
+            <div class="ar-tool">
+                <div class="ar-upload">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Arrastra una foto de tu gato aquí</p>
+                        <p class="upload-hint">o haz clic para seleccionar</p>
+                        <input type="file" id="catPhoto" accept="image/*" hidden>
+                    </div>
+                    <img id="uploadedImage" class="uploaded-image" alt="Tu gato">
+                </div>
+
+                <div class="ar-products">
+                    <h3>Selecciona una prenda</h3>
+                    <div class="ar-products-list" id="arProductsList">
+                        <!-- Productos para AR -->
+                    </div>
+                </div>
+
+                <div class="ar-result">
+                    <div class="result-display" id="resultDisplay">
+                        <p class="result-placeholder">El resultado aparecerá aquí</p>
+                    </div>
+                    <div class="ar-actions">
+                        <button class="btn btn-secondary" id="tryAnother">Probar otra prenda</button>
+                        <button class="btn btn-primary" id="addToCart">Me encanta, añadir al carrito</button>
+                    </div>
+                </div>
+            </div>
+
+            <p class="ar-disclaimer">
+                <i class="fas fa-info-circle"></i>
+                La tecnología AR proporciona una representación aproximada. Los resultados pueden variar según la foto.
+            </p>
+        </div>
+    </section>
+
+    <!-- Asesoría Section -->
+    <section id="asesoria" class="asesoria">
+        <div class="container">
+            <h2 class="section-title">Asesoría Personalizada</h2>
+            <p class="section-subtitle">Servicio de consultoría presencial en Vigo con cita previa</p>
+
+            <div class="asesoria-content">
+                <div class="asesoria-info">
+                    <h3>¿Qué incluye el servicio?</h3>
+                    <ul class="asesoria-benefits">
+                        <li><i class="fas fa-check"></i> Asesoramiento sobre tallas y modelos adecuados</li>
+                        <li><i class="fas fa-check"></i> Prueba física de prendas con tu mascota</li>
+                        <li><i class="fas fa-check"></i> Consultas sobre materiales y cuidados</li>
+                        <li><i class="fas fa-check"></i> Atención a pedidos especiales y personalizaciones</li>
+                    </ul>
+
+                    <div class="asesoria-details">
+                        <div class="detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Ubicación</h4>
+                                <p>Vigo, Pontevedra<br>
+                                <small>La dirección se proporciona al confirmar la cita</small></p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Horario</h4>
+                                <p>Atención con cita previa<br>
+                                <small>Horario flexible adaptado a tus necesidades</small></p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Contacto</h4>
+                                <p>WhatsApp: +34 600 000 000<br>
+                                Email: info@felinique.es</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="asesoria-form">
+                    <h3>Solicita tu cita</h3>
+                    <form id="asesoriaForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha preferida</label>
+                            <input type="date" id="fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="motivo">Motivo de la consulta</label>
+                            <textarea id="motivo" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Solicitar Cita</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acerca De Section -->
+    <section id="acerca-de" class="acerca-de">
+        <div class="container">
+            <h2 class="section-title">Sobre Felinique</h2>
+            
+            <div class="about-content">
+                <div class="about-story">
+                    <h3>Nuestra Historia</h3>
+                    <p>Felinique nace de la pasión por los gatos y el diseño de moda. Fundada por <strong>Valeria Lira González</strong>, nuestra marca combina creatividad española con innovación tecnológica para crear prendas únicas que respetan el bienestar felino.</p>
+                    <p>Cada diseño es creado pensando en la comodidad, seguridad y estética de nuestros amigos felinos, utilizando materiales premium y tecnología de vanguardia.</p>
+                </div>
+
+                <div class="about-values">
+                    <h3>Nuestros Valores</h3>
+                    <div class="values-grid">
+                        <div class="value">
+                            <i class="fas fa-heart"></i>
+                            <h4>Bienestar Animal</h4>
+                            <p>Diseños que respetan la anatomía y comportamiento felino</p>
+                        </div>
+                        <div class="value">
+                            <i class="fas fa-star"></i>
+                            <h4>Calidad Premium</h4>
+                            <p>Materiales ecológicos y procesos de fabricación especializados</p>
+                        </div>
+                        <div class="value">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Innovación</h4>
+                            <p>Tecnología AR para una experiencia de compra única</p>
+                        </div>
+                        <div class="value">
+                            <i class="fas fa-paint-brush"></i>
+                            <h4>Diseño Exclusivo</h4>
+                            <p>Creaciones únicas 100% españolas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-process">
+                    <h3>Nuestro Proceso</h3>
+                    <div class="process-timeline">
+                        <div class="process-step">
+                            <div class="process-icon">1</div>
+                            <h4>Diseño en España</h4>
+                            <p>Creación y desarrollo de cada prenda</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-icon">2</div>
+                            <h4>Fabricación Especializada</h4>
+                            <p>Producción con proveedores de calidad</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-icon">3</div>
+                            <h4>Control de Calidad</h4>
+                            <p>Verificación rigurosa de cada producto</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-icon">4</div>
+                            <h4>Envío Directo</h4>
+                            <p>Entrega a tu puerta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-commitment">
+                    <h3>Compromiso con la Sostenibilidad</h3>
+                    <p>En Felinique utilizamos materiales ecológicos en el 80% de nuestros productos. Nos comprometemos con prácticas sostenibles y éticas en toda nuestra cadena de producción, porque creemos que la moda puede y debe ser responsable con el planeta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-cta">
+        <div class="container">
+            <h2>Únete a la Familia Felinique</h2>
+            <p>Suscríbete y recibe ofertas exclusivas, nuevos lanzamientos y consejos para el cuidado de tu gato</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Tu email" required>
+                <button type="submit" class="btn btn-primary">Suscribirse</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Felinique</h3>
+                    <p>Moda exclusiva para gatos con diseño español y tecnología innovadora.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                        <li><a href="#probador-ar">Probador AR</a></li>
+                        <li><a href="#asesoria">Asesoría</a></li>
+                        <li><a href="#acerca-de">Acerca de</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Envíos y Devoluciones</a></li>
+                        <li><a href="#">Guía de Tallas</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> info@felinique.es</li>
+                        <li><i class="fab fa-whatsapp"></i> +34 600 000 000</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Vigo, Pontevedra</li>
+                    </ul>
+                    <div class="trust-badges">
+                        <span><i class="fas fa-shipping-fast"></i> Envío Gratis +30€</span>
+                        <span><i class="fas fa-undo"></i> Devoluciones Fáciles</span>
+                        <span><i class="fas fa-lock"></i> Pago Seguro</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Felinique. Todos los derechos reservados. Diseñado con <i class="fas fa-heart"></i> para gatos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
