@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Header -->
     <header id="header">
@@ -110,7 +112,7 @@
     <section id="catalogo" class="catalogo">
         <div class="container">
             <h2 class="section-title">Nuestro Catálogo</h2>
-            
+
             <!-- Filtros -->
             <div class="filters">
                 <button class="filter-btn active" data-filter="all">Todos</button>
@@ -132,7 +134,7 @@
         <div class="container">
             <h2 class="section-title">Probador Virtual AR</h2>
             <p class="section-subtitle">Visualiza cómo quedará la ropa en tu gato antes de comprar</p>
-            
+
             <div class="ar-steps">
                 <div class="step">
                     <div class="step-number">1</div>
@@ -212,7 +214,8 @@
                             <div>
                                 <h4>Ubicación</h4>
                                 <p>Vigo, Pontevedra<br>
-                                <small>La dirección se proporciona al confirmar la cita</small></p>
+                                    <small>La dirección se proporciona al confirmar la cita</small>
+                                </p>
                             </div>
                         </div>
                         <div class="detail">
@@ -220,7 +223,8 @@
                             <div>
                                 <h4>Horario</h4>
                                 <p>Atención con cita previa<br>
-                                <small>Horario flexible adaptado a tus necesidades</small></p>
+                                    <small>Horario flexible adaptado a tus necesidades</small>
+                                </p>
                             </div>
                         </div>
                         <div class="detail">
@@ -228,7 +232,7 @@
                             <div>
                                 <h4>Contacto</h4>
                                 <p>WhatsApp: +34 600 000 000<br>
-                                Email: info@felinique.es</p>
+                                    Email: info@felinique.es</p>
                             </div>
                         </div>
                     </div>
@@ -268,12 +272,15 @@
     <section id="acerca-de" class="acerca-de">
         <div class="container">
             <h2 class="section-title">Sobre Felinique</h2>
-            
+
             <div class="about-content">
                 <div class="about-story">
                     <h3>Nuestra Historia</h3>
-                    <p>Felinique nace de la pasión por los gatos y el diseño de moda. Fundada por <strong>Valeria Lira González</strong>, nuestra marca combina creatividad española con innovación tecnológica para crear prendas únicas que respetan el bienestar felino.</p>
-                    <p>Cada diseño es creado pensando en la comodidad, seguridad y estética de nuestros amigos felinos, utilizando materiales premium y tecnología de vanguardia.</p>
+                    <p>Felinique nace de la pasión por los gatos y el diseño de moda. Fundada por <strong>Valeria Lira
+                            González</strong>, nuestra marca combina creatividad española con innovación tecnológica
+                        para crear prendas únicas que respetan el bienestar felino.</p>
+                    <p>Cada diseño es creado pensando en la comodidad, seguridad y estética de nuestros amigos felinos,
+                        utilizando materiales premium y tecnología de vanguardia.</p>
                 </div>
 
                 <div class="about-values">
@@ -330,7 +337,9 @@
 
                 <div class="about-commitment">
                     <h3>Compromiso con la Sostenibilidad</h3>
-                    <p>En Felinique utilizamos materiales ecológicos en el 80% de nuestros productos. Nos comprometemos con prácticas sostenibles y éticas en toda nuestra cadena de producción, porque creemos que la moda puede y debe ser responsable con el planeta.</p>
+                    <p>En Felinique utilizamos materiales ecológicos en el 80% de nuestros productos. Nos comprometemos
+                        con prácticas sostenibles y éticas en toda nuestra cadena de producción, porque creemos que la
+                        moda puede y debe ser responsable con el planeta.</p>
                 </div>
             </div>
         </div>
@@ -401,11 +410,134 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Felinique. Todos los derechos reservados. Diseñado con <i class="fas fa-heart"></i> para gatos.</p>
+                <p>&copy; 2025 Felinique. Todos los derechos reservados. Diseñado con <i class="fas fa-heart"></i> para
+                    gatos.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Modal del Carrito -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+                <button class="close-modal" onclick="closeCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems" class="cart-items">
+                    <p class="empty-cart">Tu carrito está vacío</p>
+                </div>
+                <div id="cartSummary" class="cart-summary" style="display: none;">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">€0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Envío:</span>
+                        <span id="cartShipping">€0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="cartTotal">€0.00</span>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="checkout()">Proceder al Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-user"></i> Iniciar Sesión</h2>
+                <button class="close-modal" onclick="closeLogin()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" id="loginEmail" required placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">
+                            <i class="fas fa-lock"></i> Contraseña
+                        </label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Recordarme</span>
+                        </label>
+                        <a href="#" class="link-text">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                    <p class="auth-switch">
+                        ¿No tienes cuenta? <a href="#" onclick="switchToRegister(event)">Regístrate aquí</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Crear Cuenta</h2>
+                <button class="close-modal" onclick="closeRegister()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="registerName">
+                            <i class="fas fa-user"></i> Nombre completo
+                        </label>
+                        <input type="text" id="registerName" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input type="email" id="registerEmail" required placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">
+                            <i class="fas fa-lock"></i> Contraseña
+                        </label>
+                        <input type="password" id="registerPassword" required placeholder="Mínimo 6 caracteres">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPasswordConfirm">
+                            <i class="fas fa-lock"></i> Confirmar contraseña
+                        </label>
+                        <input type="password" id="registerPasswordConfirm" required placeholder="Repite tu contraseña">
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="acceptTerms" required>
+                            <span>Acepto los <a href="#" class="link-text">términos y condiciones</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Crear Cuenta</button>
+                    <p class="auth-switch">
+                        ¿Ya tienes cuenta? <a href="#" onclick="switchToLogin(event)">Inicia sesión aquí</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

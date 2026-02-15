@@ -354,15 +354,23 @@ function filterProducts(category) {
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (product) {
-        cart.push(product);
+        // Buscar si el producto ya está en el carrito
+        const existingItem = cart.find(item => item.id === productId);
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
         updateCartCount();
+        updateCartDisplay();
         showNotification(`${product.name} añadido al carrito`);
     }
 }
 
 function updateCartCount() {
     const cartCount = document.querySelector('.cart-count');
-    cartCount.textContent = cart.length;
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    cartCount.textContent = totalItems;
 
     // Animación
     cartCount.style.transform = 'scale(1.3)';
@@ -370,6 +378,205 @@ function updateCartCount() {
         cartCount.style.transform = 'scale(1)';
     }, 200);
 }
+
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartSummary = document.getElementById('cartSummary');
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+        cartSummary.style.display = 'none';
+        return;
+    }
+
+    // Mostrar items del carrito
+    cartItemsContainer.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <img src="${item.images[0]}" alt="${item.name}" class="cart-item-image">
+            <div class="cart-item-details">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-price">${item.price.toFixed(2)}€</div>
+                <div class="cart-item-quantity">
+                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity-value">${item.quantity}</span>
+                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    `).join('');
+
+    // Calcular totales
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shipping = subtotal > 30 ? 0 : 4.99;
+    const total = subtotal + shipping;
+
+    document.getElementById('cartSubtotal').textContent = `€${subtotal.toFixed(2)}`;
+    document.getElementById('cartShipping').textContent = shipping === 0 ? 'GRATIS' : `€${shipping.toFixed(2)}`;
+    document.getElementById('cartTotal').textContent = `€${total.toFixed(2)}`;
+
+    cartSummary.style.display = 'block';
+}
+
+function updateQuantity(productId, change) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(productId);
+        } else {
+            updateCartCount();
+            updateCartDisplay();
+        }
+    }
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartCount();
+    updateCartDisplay();
+    showNotification('Producto eliminado del carrito');
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        showNotification('Tu carrito está vacío');
+        return;
+    }
+    showNotification('¡Gracias por tu compra! Esta es una simulación. En un sitio real, aquí procesaríamos el pago.');
+    cart = [];
+    updateCartCount();
+    updateCartDisplay();
+    closeCart();
+}
+
+// ===== MODALES =====
+function openCart() {
+    updateCartDisplay();
+    const modal = document.getElementById('cartModal');
+    modal.classList.add('active');
+}
+
+function closeCart() {
+    const modal = document.getElementById('cartModal');
+    modal.classList.remove('active');
+}
+
+function openLogin() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.add('active');
+}
+
+function closeLogin() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.remove('active');
+}
+
+function openRegister() {
+    const modal = document.getElementById('registerModal');
+    modal.classList.add('active');
+}
+
+function closeRegister() {
+    const modal = document.getElementById('registerModal');
+    modal.classList.remove('active');
+}
+
+function switchToRegister(event) {
+    event.preventDefault();
+    closeLogin();
+    setTimeout(() => openRegister(), 200);
+}
+
+function switchToLogin(event) {
+    event.preventDefault();
+    closeRegister();
+    setTimeout(() => openLogin(), 200);
+}
+
+// Cerrar modales al hacer clic fuera
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.classList.remove('active');
+    }
+});
+
+// Event listeners para botones del header
+document.addEventListener('DOMContentLoaded', function() {
+    // Botón del carrito
+    document.querySelector('.cart-btn').addEventListener('click', openCart);
+    
+    // Botón de usuario (abrir login)
+    const userBtns = document.querySelectorAll('.icon-btn');
+    userBtns.forEach(btn => {
+        if (btn.querySelector('.fa-user')) {
+            btn.addEventListener('click', openLogin);
+        }
+    });
+});
+
+// ===== FORMULARIOS DE AUTENTICACIÓN =====
+function initAuthForms() {
+    // Formulario de login
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        console.log('Login:', { email, password });
+        showNotification('¡Bienvenido! (Esta es una simulación, no se guardan datos reales)');
+        loginForm.reset();
+        closeLogin();
+    });
+
+    // Formulario de registro
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('registerName').value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+        
+        // Validación básica
+        if (password.length < 6) {
+            showNotification('La contraseña debe tener al menos 6 caracteres');
+            return;
+        }
+        
+        if (password !== passwordConfirm) {
+            showNotification('Las contraseñas no coinciden');
+            return;
+        }
+        
+        console.log('Registro:', { name, email, password });
+        showNotification('¡Cuenta creada exitosamente! (Esta es una simulación)');
+        registerForm.reset();
+        closeRegister();
+        setTimeout(() => openLogin(), 500);
+    });
+}
+
+// Llamar a initAuthForms en la inicialización
+document.addEventListener('DOMContentLoaded', function () {
+    initNavigation();
+    loadProducts();
+    initFilters();
+    initARTool();
+    initForms();
+    initAuthForms();
+    initScrollAnimations();
+    initCarouselDots();
+});
 
 // ===== PROBADOR AR =====
 function initARTool() {
@@ -613,5 +820,16 @@ window.scrollToSection = scrollToSection;
 window.addToCart = addToCart;
 window.tryWithAR = tryWithAR;
 window.changeImage = changeImage;
+window.openCart = openCart;
+window.closeCart = closeCart;
+window.openLogin = openLogin;
+window.closeLogin = closeLogin;
+window.openRegister = openRegister;
+window.closeRegister = closeRegister;
+window.switchToLogin = switchToLogin;
+window.switchToRegister = switchToRegister;
+window.updateQuantity = updateQuantity;
+window.removeFromCart = removeFromCart;
+window.checkout = checkout;
 
 console.log('Felinique cargado correctamente ✨');
